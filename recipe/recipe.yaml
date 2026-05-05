@@ -8,12 +8,6 @@ context:
   name: ${{ repo_name }}
   component_version: ${{ component_name ~ major_version }}
   cxx_name: ${{ "lib" ~ name }}
-  protobuf_version: "6.33.5"
-
-  # osx-arm64
-  libabseil_version: ">=20260107.0,<20260108.0a0"
-  ogre_version: ">=1.10.12.1,<1.11.0a0"
-  ogre_next_version: ">=2.3.3,<2.3.4.0a0"
 
 recipe:
   name: ${{ name }}
@@ -39,14 +33,14 @@ outputs:
       build:
         - ${{ compiler('cxx') }}
         - ${{ compiler('c') }}
-        #- ${{ stdlib('c') }}
+        - ${{ stdlib('c') }}
         - ninja
         - cmake
         - pkg-config
       host:
         - libgz-cmake
-        - libabseil ${{ libabseil_version }}
-        - libprotobuf ${{ protobuf_version }}.*
+        - libabseil
+        - libprotobuf
         - libgz-math
         - libgz-common
         - libgz-transport
@@ -57,8 +51,8 @@ outputs:
         - if: osx
           then:
             - libarchive
-        - ogre-next ${{ ogre_next_version }}
-        - ogre ${{ ogre_version }}
+        - ogre-next
+        - ogre
       run_exports:
         - ${{ pin_subpackage(cxx_name, upper_bound='x') }}
 
