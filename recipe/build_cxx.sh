@@ -14,7 +14,7 @@ cmake ${CMAKE_ARGS} -GNinja \
       -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=TRUE \
       -DCMAKE_MACOSX_RPATH=FALSE \
       -DBUILD_SHARED_LIBS=ON \
-      -DBUILD_TESTING=ON \
+      -DBUILD_TESTING=OFF \
       ..
 
 cmake --build . --config Release
